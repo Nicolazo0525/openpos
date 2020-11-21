@@ -1,0 +1,18 @@
+######################
+# Node
+######################
+/node/
+node_tmp/
+node_modules/
+npm-debug.log.*
+/.awcache/*
+/.cache-loader/*
+######################
+# NET
+######################
+Client/bin/
+Client/obj/
+Server/bin/
+Server/obj/
+Shared/bin/
+Shared/obj/

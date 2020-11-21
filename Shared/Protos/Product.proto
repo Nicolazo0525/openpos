@@ -1,0 +1,59 @@
+syntax = "proto3";
+package Product;
+import "google/protobuf/empty.proto";
+option csharp_namespace = "openpos.Shared";
+
+
+message Category {
+  string Id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message Product {
+  string Id = 1;
+  int32 code=2;
+  string name = 3;
+  string description = 4;
+  double price = 5;
+  repeated Category categories = 6;
+}
+service ProductServiceGrpc{
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse);
+  rpc GetProducts(google.protobuf.Empty) returns (GetProductsResponse);
+  rpc CreateOrUpdateProduct (CreateOrUpdateProductRequest) returns (CreateOrUpdateProductResponse);
+  
+  rpc DeleteProduct(GetProductRequest) returns (ProductDeleteResponse);
+  rpc GetCategories(google.protobuf.Empty) returns (GetCategoriesResponse);
+}
+message GetCategoriesResponse{
+
+  repeated Category categories = 1;
+  string error = 2;
+}
+message GetProductsRequest {}
+message GetProductsResponse {
+  repeated Product products = 1;
+  string error = 2;
+}
+message GetProductRequest {
+  string id = 1;
+}
+message GetProductResponse {
+  Product product = 1;
+  string error = 2;
+}
+message CreateOrUpdateProductRequest {
+  Product product = 1;
+}
+message CreateOrUpdateProductResponse {
+  Product product = 1;
+  bool success = 2;
+  string error = 3;
+}
+message ProductDeleteResponse{
+  string StatusMessage=2;
+  bool Status=3;
+  int32 StatusCode=4;
+}
+
